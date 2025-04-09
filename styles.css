@@ -1,9 +1,60 @@
+:root {
+  --navy-blue: rgb(0, 0, 128);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+body {
+  background-color: rgb(20, 20, 20);
+  color: white;
+}
+
 h1 {
-  border: 3px solid red;
+  text-align: center;
+  padding: 30px;
+  font-size: 48px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.card {
+  border: 3px solid white;
+  border-radius: 20px;
+  background-color: gold;
+  color: var(--navy-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 350px;
+  width: 350px;
+}
+
+.card h2 {
+  text-align: center;
+}
+
+.card img {
+  height: 200px;
+  width: 150px;
+  border: 2px solid var(--navy-blue);
+  border-radius: 10px;
+}
+
+@media (min-width: 600px) {
+  .main {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
