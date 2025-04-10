@@ -6,6 +6,7 @@ function Book(title, author, year, imageUrl) {
   this.author = author;
   this.year = year;
   this.imageUrl = imageUrl;
+  this.read = false;
 }
 
 function addBookToLibrary(title, author, year, imageUrl) {
@@ -19,21 +20,51 @@ function displayLibrary() {
   myLibrary.forEach((book) => {
     const card = document.createElement("div");
     card.classList.add("card");
+    card.id = book.id;
 
     const title = document.createElement("h2");
     const img = document.createElement("img");
+    const container = document.createElement("div");
     const author = document.createElement("div");
     const year = document.createElement("div");
+    const read = document.createElement("div");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add("checkbox");
+    container.classList.add("info-container");
+    read.classList.add("read");
 
     title.textContent = book.title;
     img.src = book.imageUrl;
-    author.textContent = book.author;
-    year.textContent = book.year;
 
+    const authorSpan = document.createElement("span");
+    const authorName = document.createElement("span");
+    authorSpan.textContent = "Author: ";
+    authorName.textContent = book.author;
+    authorSpan.classList.add("info-span");
+    authorName.classList.add("author-name");
+    author.appendChild(authorSpan);
+    author.appendChild(authorName);
+
+    const yearSpan = document.createElement("span");
+    const yearContent = document.createElement("span");
+    yearSpan.textContent = "Year: ";
+    yearContent.textContent = book.year;
+    yearSpan.classList.add("info-span");
+    yearContent.classList.add("year");
+    year.appendChild(yearSpan);
+    year.appendChild(yearContent);
+
+    read.classList.add("info-span");
+    read.textContent = "Read: ";
+
+    read.appendChild(checkbox);
     card.appendChild(title);
     card.appendChild(img);
-    card.appendChild(author);
-    card.appendChild(year);
+    container.appendChild(author);
+    container.appendChild(year);
+    container.appendChild(read);
+    card.appendChild(container);
     main.appendChild(card);
   });
 }
@@ -64,3 +95,14 @@ addBookToLibrary(
 );
 
 displayLibrary();
+
+const checkboxes = document.querySelectorAll(".checkbox");
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("click", () => {
+    const card = checkbox.parentElement.parentElement.parentElement;
+    const bookId = card.id;
+    const book = myLibrary.find((book) => book.id === bookId);
+    book.read ? null : (book.read = true);
+  });
+});
