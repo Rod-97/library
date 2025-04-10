@@ -69,6 +69,11 @@ function displayLibrary() {
   });
 }
 
+function markAsRead(bookId) {
+  const book = myLibrary.find((book) => book.id === bookId);
+  book.read ? null : (book.read = true);
+}
+
 addBookToLibrary(
   "The Beginning of Infinity",
   "David Deutsch",
@@ -101,8 +106,6 @@ const checkboxes = document.querySelectorAll(".checkbox");
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("click", () => {
     const card = checkbox.parentElement.parentElement.parentElement;
-    const bookId = card.id;
-    const book = myLibrary.find((book) => book.id === bookId);
-    book.read ? null : (book.read = true);
+    markAsRead(card.id);
   });
 });
