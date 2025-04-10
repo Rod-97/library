@@ -29,10 +29,13 @@ function displayLibrary() {
     const year = document.createElement("div");
     const read = document.createElement("div");
     const checkbox = document.createElement("input");
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
     checkbox.type = "checkbox";
     checkbox.classList.add("checkbox");
     container.classList.add("info-container");
     read.classList.add("read");
+    deleteButton.classList.add("delete-btn");
 
     title.textContent = book.title;
     img.src = book.imageUrl;
@@ -65,6 +68,7 @@ function displayLibrary() {
     container.appendChild(year);
     container.appendChild(read);
     card.appendChild(container);
+    card.appendChild(deleteButton);
     main.appendChild(card);
   });
 }
@@ -72,6 +76,13 @@ function displayLibrary() {
 function markAsRead(bookId) {
   const book = myLibrary.find((book) => book.id === bookId);
   book.read ? null : (book.read = true);
+}
+
+function deleteBook(bookId) {
+  const bookIdx = myLibrary.findIndex((book) => {
+    return book.id === bookId;
+  });
+  myLibrary.splice(bookIdx, 1);
 }
 
 addBookToLibrary(
@@ -102,10 +113,23 @@ addBookToLibrary(
 displayLibrary();
 
 const checkboxes = document.querySelectorAll(".checkbox");
+const deleteButtons = document.querySelectorAll(".delete-btn");
 
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("click", () => {
     const card = checkbox.parentElement.parentElement.parentElement;
     markAsRead(card.id);
+  });
+});
+
+deleteButtons.forEach((deleteBtn) => {
+  deleteBtn.addEventListener("click", () => {
+    const userInput = prompt(
+      "Are you sure you want to delete this book? (yes/no)"
+    );
+    if (userInput.toLowerCase() !== "yes") return;
+    const card = deleteBtn.parentElement;
+    deleteBook(card.id);
+    card.remove();
   });
 });
