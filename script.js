@@ -112,8 +112,29 @@ addBookToLibrary(
 
 displayLibrary();
 
+const newBookBtn = document.querySelectorAll(".new-book-btn")[0];
+const dialog = document.querySelectorAll(".dialog")[0];
+const shadow = document.querySelectorAll(".shadow")[0];
+const submitBtn = document.querySelector("#submit-btn");
 const checkboxes = document.querySelectorAll(".checkbox");
 const deleteButtons = document.querySelectorAll(".delete-btn");
+
+newBookBtn.addEventListener("click", () => {
+  dialog.classList.add("active");
+  shadow.classList.add("active");
+});
+
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const year = document.getElementById("year").value;
+  const imgUrl = document.getElementById("img-url").value;
+  addBookToLibrary(title, author, year, imgUrl);
+  dialog.classList.remove("active");
+  shadow.classList.remove("active");
+  displayLibrary();
+});
 
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("click", () => {

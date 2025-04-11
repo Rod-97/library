@@ -11,12 +11,108 @@
 body {
   background-color: rgb(20, 20, 20);
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  position: relative;
 }
 
 h1 {
   text-align: center;
   padding: 30px;
   font-size: 48px;
+}
+
+.new-book-btn {
+  background-color: var(--navy-blue);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dialog {
+  position: absolute;
+  z-index: 99;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  background-color: var(--navy-blue);
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog.active {
+  display: flex;
+}
+
+.dialog h2 {
+  margin-bottom: 20px;
+}
+
+.dialog .form-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-field label,
+.form-field input {
+  font-size: 14px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+#submit-btn {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: gold;
+  color: var(--navy-blue);
+  font-weight: bold;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    color: gold;
+    background-color: var(--navy-blue);
+    border-color: gold;
+  }
+}
+
+.shadow {
+  display: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  z-index: 98;
+}
+
+.shadow.active {
+  display: block;
 }
 
 .main {
