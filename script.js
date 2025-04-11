@@ -136,6 +136,11 @@ submitBtn.addEventListener("click", (e) => {
   displayLibrary();
 });
 
+shadow.addEventListener("click", () => {
+  dialog.classList.remove("active");
+  shadow.classList.remove("active");
+});
+
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("click", () => {
     const card = checkbox.parentElement.parentElement.parentElement;
